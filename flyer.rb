@@ -43,11 +43,7 @@ class Flyer
 
 
 	flyers.each do |flyer|
-		# puts "#{flyer.name} - #{flyer.miles_flown} miles"
-
 		promotions.each do |name, bonus|
-			# puts "Earn #{bonus}x miles by flying #{name}!"
-			
 			puts "#{flyer.name} could earn #{flyer.miles_flown * bonus} miles by flying #{name}!"
 		end 
 
