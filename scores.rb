@@ -12,3 +12,12 @@ failing_scores = scores.any? { |score| score < 70 }
 
 puts failing_scores
 puts scores.detect { |score| score < 70 }
+
+s = scores.select! { |score| score > 70}
+
+puts s
+p scores
+
+scores.reject! { |score| score.even?  }
+
+p scores
