@@ -1,14 +1,14 @@
 def deal
-		puts "Start" 
   faces = ["Jack", "Queen", "King", "Ace"]
   suits = ["Hearts", "Diamonds", "Spades", "Clubs"]
-  random_face = faces.sample
-  random_suit = suits.sample 
-  
-	score = yield random_face, random_suit
-
-	puts "You scored a #{score}!"
-	puts "End"
+  if block_given?
+    random_face = faces.sample
+    random_suit = suits.sample
+    score = yield random_face, random_suit
+    puts "You scored a #{score}!"
+  else
+    puts "No deal!"
+  end
 end
 
 deal do |face, suit| 
@@ -17,3 +17,4 @@ deal do |face, suit|
 	#this part below must go last if we want it to appear as the score 
 	face.length + suit.length
 end
+deal
