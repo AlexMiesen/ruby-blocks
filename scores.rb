@@ -7,8 +7,9 @@ total = scores_doubled.reduce(0) { |sum, num| sum + num }
 p total
 
 evens, odds = scores.partition { |score| score.even?}
-
+puts "Evens:"
 p evens
+puts "Odds:"
 p odds
 
 
