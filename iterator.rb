@@ -11,3 +11,9 @@ three_times do |number|
   puts "#{number} pushup"
   puts "#{number} chinup"
 end 
+
+def n_times(number)
+	1.upto number do |count|
+		yield(count)
+	end
+end
