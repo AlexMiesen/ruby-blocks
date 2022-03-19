@@ -29,6 +29,10 @@ class Playlist
 	def each
 		@songs.each { |song| yield song }
 	end
+
+	def play_songs
+		self.each { |song| song.play }
+	end
 end
 
 my_playlist = Playlist.new('epic list')
@@ -37,4 +41,6 @@ my_playlist.add_song(song_1)
 my_playlist.add_song(song_2)
 my_playlist.add_song(song_3)
 
-my_playlist.each {|song| song.play}
+# my_playlist.each {|song| song.play}
+
+my_playlist.play_songs
