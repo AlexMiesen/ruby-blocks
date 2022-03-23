@@ -1,3 +1,5 @@
+require_relative 'my_enumerable'
+
 class Song
   attr_reader :name, :artist, :duration
 
@@ -25,7 +27,9 @@ song2 = Song.new('Song 2','Blur', 2)
 song3 = Song.new('The Magic Number','De La Soul', 3)
 
 class Playlist
-	include Enumerable
+	# include Enumerable     -> getting rid off this so we can use myEnumerable (Part 6: Bonus Exercise) revert 'my_select' and 'my_map' back if needed
+		include MyEnumerable
+
   def initialize(name)
     @name = name
     @songs = []
@@ -50,9 +54,9 @@ class Playlist
 		@songs.each {|song| yield "#{song.name} - #{song.artist}" }
 	end
 
-	def each_by_artist(artist)
-		@songs.select {|song| song.artist == artist }.each {|song| yield song}
-	end
+	# def each_by_artist(artist)
+	# 	@songs.my_select {|song| song.artist == artist }.each {|song| yield song}
+	# end
 
 end
 
@@ -66,21 +70,24 @@ my_playlist.add_song(song3)
 
 my_playlist.play_songs
 
-g_songs = my_playlist.select { |song| song.name =~ /g/ } #only songs with the letter 'G'
+g_songs = my_playlist.my_select { |song| song.name =~ /g/ } #only songs with the letter 'G'
 
-john_songs = my_playlist.select { |song| song.artist =~ /John/}
+john_songs = my_playlist.my_select { |song| song.artist =~ /John/}
 
-total_duration = my_playlist.sum { |song| song.duration }
+# total_duration = my_playlist.sum { |song| song.duration }
 
 # p g_songs
 # p john_songs
 # p total_duration
 
-song_labels = my_playlist.map { |song| "#{song.name} - #{song.artist}" }
+song_labels = my_playlist.my_map { |song| "#{song.name} - #{song.artist}" }
 # p song_labels
 
 my_playlist.each_tagline { |tagline| puts tagline}
-my_playlist.each_by_artist("Blur") { |song| song.play}
+# my_playlist.each_by_artist("Blur") { |song| song.play}
 
 song1.each_filename {|filename| puts filename }
+
+non_john_songs = my_playlist.my_reject { |song| song.name =~ /Wild/ }
+p non_john_songs
 
