@@ -91,3 +91,10 @@ song1.each_filename {|filename| puts filename }
 non_john_songs = my_playlist.my_reject { |song| song.name =~ /Wild/ }
 p non_john_songs
 
+p "my Dectect Method"
+
+p my_playlist.my_detect { |song| song.artist == "De La Soul" }
+
+p 'My any Method'
+
+p my_playlist.my_any? { |song| song.artist == "Blur" }
