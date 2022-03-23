@@ -12,7 +12,11 @@ class Song
   end
 
 	def each_filename
-		self.each {|song| song.gsub(" ", "-")}
+		basename = "#{name}-#{artist}".gsub(" ", "-").downcase
+		
+		extensions = [".mp3", ".wav", ".aac"]
+
+		extensions.each { |ext| yield basename + ext }
 	end
 end
 
@@ -78,5 +82,5 @@ song_labels = my_playlist.map { |song| "#{song.name} - #{song.artist}" }
 my_playlist.each_tagline { |tagline| puts tagline}
 my_playlist.each_by_artist("Blur") { |song| song.play}
 
-song1.each_filename {|filename| puts filename}
+song1.each_filename {|filename| puts filename }
 
