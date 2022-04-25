@@ -50,6 +50,7 @@ def with_expectation(expected_value)
 
 
 	result = yield
+	
 	if expected_value == result
 		puts "Passed"
 	else
