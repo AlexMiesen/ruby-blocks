@@ -18,9 +18,22 @@ class Application
     puts "Writing to #{@environment} log file..."
   end
 
-	def in_production
+	# def in_production (This method was used before part 3.Make it More Generic)
+	# 	old_environment = @environment
+	# 	@environment = :production
+	# 	yield
+
+	# 	rescue Exception => e
+	# 		puts e.message
+
+	# 	ensure
+	# 		@environment = old_environment
+	# 		puts "Reset environment to #{@environment}"
+	# end
+
+  def in_environment(new_environment)
 		old_environment = @environment
-		@environment = :production
+		@environment = new_environment
 		yield
 
 		rescue Exception => e
@@ -37,9 +50,8 @@ app = Application.new
 # app.handle_request
 # app.write_to_log
 
-app.in_production do
+app.in_environment(:production) do
   app.connect_to_database
   app.handle_request
-	raise "Boom!"
   app.write_to_log
 end
