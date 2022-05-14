@@ -54,3 +54,8 @@ client.as_signed_in_user("broncos_fan") do
   client.post("Broncos are going all the way!")
   client.timeline
 end
+
+client.as_signed_in_user("seahawker") do
+  client.post("Not if we can help it...")
+  raise "Boo! Hiss!"
+end
