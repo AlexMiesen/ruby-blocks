@@ -22,4 +22,35 @@ class SportyClient
     # sign out of remote service
     puts "#{user} signed out!"
   end
+
+	def as_signed_in_user(user)
+		sign_in(user)
+		
+		begin
+			yield
+		ensure 
+			sign_out(user)
+		end 
+
+	end
+
+
+end
+
+
+
+client = SportyClient.new
+
+client.sign_in("broncos_fan")
+client.post("Ready for the new season...")
+client.post("Broncos are going all the way!")
+client.timeline
+client.sign_out("broncos_fan")
+
+puts "New Code below"
+
+client.as_signed_in_user("broncos_fan") do
+  client.post("Ready for the new season...")
+  client.post("Broncos are going all the way!")
+  client.timeline
 end
